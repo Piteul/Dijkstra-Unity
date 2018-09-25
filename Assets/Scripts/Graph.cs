@@ -65,7 +65,14 @@ public class Graph : MonoBehaviour
 		for ( int i = 0; i < m_Nodes.Count; i++ )
 		{
 			Node node = m_Nodes [ i ];
-			unvisited.Add ( node );
+
+            //Debug.Log("Node " + i.ToString() + " : " + node.gameObject.activeSelf.ToString());
+
+            //only take active node
+            if (node.gameObject.activeSelf)
+            {
+			    unvisited.Add ( node );
+            }
 			
 			// Setting the node distance to Infinity
 			distances.Add ( node, float.MaxValue );
