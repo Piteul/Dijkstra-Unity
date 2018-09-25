@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// The Follower.
@@ -162,6 +163,13 @@ public class Follower : MonoBehaviour
         if (m_Current != null)
         {
             transform.position = Vector3.MoveTowards(transform.position, m_Current.transform.position, m_Speed);
+        }
+
+        if (Input.GetKeyDown("space")) {
+            SceneManager.LoadScene(0);
+        }
+        else if (Input.GetKey("escape")) {
+            Application.Quit();
         }
     }
 

@@ -1,4 +1,5 @@
-﻿
+﻿#pragma warning disable 0414
+
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
