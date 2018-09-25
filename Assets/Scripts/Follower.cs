@@ -24,11 +24,14 @@ public class Follower : MonoBehaviour
     protected Path m_Path = new Path();
     protected Node m_Current;
 
+    [SerializeField]
+    protected GameObject trap;
+         
     void Start()
     {
 
         allNodesActive();
-
+        
         if (randomStartAndEnd)
         {
             randomLandmark();
@@ -40,7 +43,14 @@ public class Follower : MonoBehaviour
         {
             randomNode(randomNodes);
         }
+
         m_Path = m_Graph.GetShortestPath(m_Start, m_End);
+
+        //No path, activate trap text
+        if (m_Path.length == 0) {
+            trap.SetActive(true);
+        }
+
         Follow(m_Path);
     }
 
@@ -162,7 +172,9 @@ public class Follower : MonoBehaviour
     {
         if (m_Current != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, m_Current.transform.position, m_Speed);
+            //adjust speed compared framerate
+            float step = m_Speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, m_Current.transform.position, step);
         }
 
         if (Input.GetKeyDown("space")) {
