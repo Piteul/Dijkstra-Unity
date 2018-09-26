@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// The Follower.
@@ -12,6 +14,7 @@ using UnityEngine.UI;
 public class Follower : MonoBehaviour {
 
     public Slider sld_nodes;
+    public Button algoButton;
 
     protected int randomNodes;
 
@@ -38,6 +41,8 @@ public class Follower : MonoBehaviour {
 
 
     void Start() {
+
+        //ManageAlgo();
 
         randomNodes = (int)sld_nodes.value;
 
@@ -160,6 +165,41 @@ public class Follower : MonoBehaviour {
         }
 
 
+
+
+    }
+
+
+    /// <summary>
+    /// Check & change between Algo/Graph
+    /// </summary>
+    public void ManageAlgo() {
+
+        GameObject g1 = GameObject.Find("Graph");
+        GameObject g2 = GameObject.Find("Graph 2");
+
+        switch (PlayerPrefs.GetInt("graphNumber")) {
+            case 1:
+                Debug.Log(m_Graph.ToString());
+                g1.gameObject.SetActive(true);
+                g2.gameObject.SetActive(false);
+
+                m_Graph = g1.GetComponent<Graph>();
+
+                break;
+            case 2:
+                Debug.Log(m_Graph.ToString());
+                g1.gameObject.SetActive(false);
+                g2.gameObject.SetActive(true);
+
+                m_Graph = g2.GetComponent<Graph>();
+                break;
+
+            default:
+                Debug.Log("Nothing");
+                break;
+
+        }
 
 
     }
