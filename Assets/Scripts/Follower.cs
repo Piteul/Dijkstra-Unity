@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// The Follower.
 /// </summary>
 [ExecuteInEditMode]
 public class Follower : MonoBehaviour {
-    [SerializeField]
+
+    public Slider sld_nodes;
+
     protected int randomNodes;
+
     [SerializeField]
     protected bool randomStartAndEnd;
     [SerializeField]
@@ -30,7 +34,7 @@ public class Follower : MonoBehaviour {
     Animator anim;
 
     void Start() {
-
+        randomNodes = (int)sld_nodes.value;
         Srend = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
 
