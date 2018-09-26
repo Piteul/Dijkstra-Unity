@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -33,12 +34,17 @@ public class Follower : MonoBehaviour {
     SpriteRenderer Srend;
     Animator anim;
 
+
+
     void Start() {
+
         randomNodes = (int)sld_nodes.value;
+
         Srend = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
 
-        allNodesActive();
+        AllNodesActive();
+
 
         if (randomStartAndEnd) {
             randomLandmark();
@@ -61,14 +67,43 @@ public class Follower : MonoBehaviour {
     }
 
     void Update() {
-        if (m_Current != null) {
 
-            makeAnimation();
+        ManageFollower();
+        ManageKeyboard();
+
+    }
+
+    /// <summary>
+    /// Manage the follower
+    /// </summary>
+    void ManageFollower() {
+
+        //Follower moving
+        if (m_Current != null) {
+            if (!(this.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled)) {
+                this.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+
+            MakeAnimation();
 
             //adjust speed compared framerate
             float step = m_Speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, m_Current.transform.position, step);
         }
+        //Follower arrived
+        else {
+            //if (this.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled) {
+            //    this.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            //DestroyImmediate(this);
+            //}
+        }
+
+    }
+
+    /// <summary>
+    /// Manage keyboard key
+    /// </summary>
+    void ManageKeyboard() {
 
         if (Input.GetKeyDown("space")) {
             SceneManager.LoadScene(0);
@@ -81,7 +116,7 @@ public class Follower : MonoBehaviour {
     /// <summary>
     /// manage the follower's animation
     /// </summary>
-    void makeAnimation() {
+    void MakeAnimation() {
 
         //up
         if (m_Current.transform.position.y > this.transform.position.y) {
@@ -122,7 +157,7 @@ public class Follower : MonoBehaviour {
             anim.SetBool("WalkDown", false);
         }
 
-        
+
 
 
     }
@@ -130,7 +165,7 @@ public class Follower : MonoBehaviour {
     /// <summary>
     /// put all nodes active by default
     /// </summary>
-    void allNodesActive() {
+    void AllNodesActive() {
         for (int i = 0; i < 25; i++) {
             m_Graph.nodes[i].gameObject.SetActive(true);
         }
@@ -141,9 +176,14 @@ public class Follower : MonoBehaviour {
     /// inactive nb nodes
     /// </summary>
     void randomNode(int nb) {
+
+        var numberList = Enumerable.Range(1, 10).ToList();
+
         while (nb > 0) {
+
             int rand = Random.Range(0, 25);
-            //Debug.Log("rand : " + rand.ToString());
+
+            Debug.Log("rand : " + numberList.ToString());
 
             Node temp = m_Graph.nodes[rand];
 

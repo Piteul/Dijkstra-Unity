@@ -10,14 +10,15 @@ public class CanvasManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        sld_nodes.value = PlayerPrefs.GetFloat("sliderValue");
+        
 
     }
 	
 	// Update is called once per frame
 	void Update () {
         nb_nodes.text = sld_nodes.value.ToString();
-
+        PlayerPrefs.SetFloat("sliderValue",sld_nodes.value);
 
     }
 }
