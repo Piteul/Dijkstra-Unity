@@ -36,6 +36,7 @@ public class Follower : MonoBehaviour {
 
 
 
+
     void Start() {
 
         randomNodes = (int)sld_nodes.value;
@@ -80,6 +81,7 @@ public class Follower : MonoBehaviour {
 
         //Follower moving
         if (m_Current != null) {
+
             if (!(this.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled)) {
                 this.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
             }
@@ -177,21 +179,20 @@ public class Follower : MonoBehaviour {
     /// </summary>
     void randomNode(int nb) {
 
-        var numberList = Enumerable.Range(1, 10).ToList();
-
         while (nb > 0) {
 
             int rand = Random.Range(0, 25);
 
-            Debug.Log("rand : " + numberList.ToString());
-
             Node temp = m_Graph.nodes[rand];
+
+            //Debug.Log(rand.ToString());
 
             if (!(temp.Equals(m_Start) || temp.Equals(m_End))) {
                 //Debug.Log("Good");
-
-                m_Graph.nodes[rand].gameObject.SetActive(false);
-                --nb;
+                if (m_Graph.nodes[rand].gameObject.activeSelf) {
+                    m_Graph.nodes[rand].gameObject.SetActive(false);
+                    --nb;
+                }
 
             }
 
