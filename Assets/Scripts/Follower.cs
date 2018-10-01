@@ -15,7 +15,6 @@ public class Follower : MonoBehaviour {
 
     public Slider sld_nodes;
     public Button algoButton;
-
     protected int randomNodes;
 
     [SerializeField]
@@ -113,7 +112,8 @@ public class Follower : MonoBehaviour {
     void ManageKeyboard() {
 
         if (Input.GetKeyDown("space")) {
-            SceneManager.LoadScene(0);
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else if (Input.GetKey("escape")) {
             Application.Quit();
@@ -204,10 +204,22 @@ public class Follower : MonoBehaviour {
 
     }
 
-    /// <summary>
-    /// put all nodes active by default
-    /// </summary>
-    void AllNodesActive() {
+    public void updateGraph() {
+
+            //Debug.Log(SceneManager.GetActiveScene().name);
+        if (SceneManager.GetActiveScene().name == "Level 1") {
+            //Debug.Log("CHANGE");
+            SceneManager.LoadScene(1);
+        }
+        else {
+            SceneManager.LoadScene(0);
+        }
+
+    }
+        /// <summary>
+        /// put all nodes active by default
+        /// </summary>
+        void AllNodesActive() {
         for (int i = 0; i < 25; i++) {
             m_Graph.nodes[i].gameObject.SetActive(true);
         }

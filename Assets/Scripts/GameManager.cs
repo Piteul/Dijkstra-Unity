@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     public bool astar = false;
 
 
+
     private void Awake() {
         if(instance == null) {
             instance = this;
@@ -35,27 +36,28 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-    public void updateGraph() {
+    //public void updateGraph() {
 
-        Debug.Log(astar.ToString());
-        if (!(astar)) { //Dijkstra
-            buttonText.text = "Swap : A*";
-            astar = true;
-            follower.m_Graph = g1;
-            g2.gameObject.SetActive(false);
-            g1.gameObject.SetActive(true);
-            SceneManager.LoadScene(0);
-        }
-        else {
-            buttonText.text = "Swap : Dijkstra";
-            astar = false;
-            follower.m_Graph = g2;
-            g1.gameObject.SetActive(false);
-            g2.gameObject.SetActive(true);
-            SceneManager.LoadScene(0);
-        }
+    //    Debug.Log(astar.ToString());
+    //    if (!(astar)) { //Dijkstra
+    //        buttonText.text = "Swap : A*";
+    //        astar = true;
+    //        follower.m_Graph = g1;
+    //        g2.gameObject.SetActive(false);
+    //        g1.gameObject.SetActive(true);
+    //        SceneManager.LoadScene(0);
+    //    }
+    //    else {
+    //        buttonText.text = "Swap : Dijkstra";
+    //        astar = false;
+    //        follower.m_Graph = g2;
+    //        g1.gameObject.SetActive(false);
+    //        g2.gameObject.SetActive(true);
+    //        SceneManager.LoadScene(0);
+    //    }
 
-    }
+    //}
+
 
 
 }
