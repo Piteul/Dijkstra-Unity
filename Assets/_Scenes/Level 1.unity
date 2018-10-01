@@ -206,6 +206,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0b64c689b20dd94990dafcc8e3f25ee, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &150982902 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114877194769535126, guid: 294ae26c013c10c4eb0abc454e133fe2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1473250485}
+  m_Script: {fileID: 11500000, guid: 1bb04fe046b69a3438c874d6614b49d3, type: 3}
 --- !u!4 &156061824 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4843222718192568, guid: d0b64c689b20dd94990dafcc8e3f25ee,
@@ -3847,6 +3853,51 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d0b64c689b20dd94990dafcc8e3f25ee, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1270150798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1270150800}
+  - component: {fileID: 1270150799}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1270150799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1270150798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb4a5be60e7f1149bf0ff63717a9845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  g1: {fileID: 321179225}
+  g2: {fileID: 150982902}
+  follower: {fileID: 914412157}
+  buttonText: {fileID: 1009351055}
+  astar: 0
+--- !u!4 &1270150800
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1270150798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 860.06506, y: 575.0992, z: -185.17807}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1283526772
 Prefab:
   m_ObjectHideFlags: 0
@@ -6635,8 +6686,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1900347841}
-        m_MethodName: SwapName
+      - m_Target: {fileID: 1270150799}
+        m_MethodName: updateGraph
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

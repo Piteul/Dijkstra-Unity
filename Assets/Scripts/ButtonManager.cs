@@ -9,7 +9,12 @@ public class ButtonManager : MonoBehaviour {
     public Text buttonText;
 
     private void Start() {
-        PlayerPrefs.SetInt("graphNumber", 1);
+        if(GameManager.instance.astar) {
+            buttonText.text = "Swap : A*";
+        }
+        else {
+            buttonText.text = "Swap : Dijkstra";
+        }
     }
 
     public void SwapName() {
@@ -17,12 +22,13 @@ public class ButtonManager : MonoBehaviour {
         switch (buttonText.text.ToString()) {
             case "Swap : Dijkstra":
                 buttonText.text = "Swap : A*";
-                PlayerPrefs.SetInt("graphNumber", 2);
+                GameManager.instance.astar = true;
+                GameManager.instance.updateGraph();
                 SceneManager.LoadScene(0);
                 break;
             case "Swap : A*":
                 buttonText.text = "Swap : Dijkstra";
-                PlayerPrefs.SetInt("graphNumber", 1);
+                GameManager.instance.updateGraph();
                 SceneManager.LoadScene(0);
                 break;
 
@@ -31,6 +37,5 @@ public class ButtonManager : MonoBehaviour {
                 break;
         }
 
-        Debug.Log(PlayerPrefs.GetInt("graphNumber").ToString());
     }
 }

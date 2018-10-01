@@ -21,7 +21,7 @@ public class Follower : MonoBehaviour {
     [SerializeField]
     protected bool randomStartAndEnd;
     [SerializeField]
-    protected Graph m_Graph;
+    public Graph m_Graph;
     [SerializeField]
     protected Node m_Start;
     [SerializeField]
