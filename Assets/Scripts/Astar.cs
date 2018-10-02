@@ -7,13 +7,13 @@ using UnityEngine;
 
 
 public class _Node {
-    // Change this depending on what the desired size is for each element in the grid
-    public static int _Node_SIZE = 32;
+
+    public static int _Node_SIzE = 24;
     public _Node Parent;
     public Vector2 Position;
     public Vector2 Center {
         get {
-            return new Vector2(Position.X + _Node_SIZE / 2, Position.Y + _Node_SIZE / 2);
+            return new Vector2(Position.x + _Node_SIzE / 2, Position.y + _Node_SIzE / 2);
         }
     }
     public float DistanceToTarget;
@@ -55,8 +55,8 @@ public class Astar {
     }
 
     public Stack<_Node> FindPath(Vector2 Start, Vector2 End) {
-        _Node start = new _Node(new Vector2((int)(Start.X / _Node._Node_SIZE), (int)(Start.Y / _Node._Node_SIZE)), true);
-        _Node end = new _Node(new Vector2((int)(End.X / _Node._Node_SIZE), (int)(End.Y / _Node._Node_SIZE)), true);
+        _Node start = new _Node(new Vector2((int)(Start.x / _Node._Node_SIzE), (int)(Start.y / _Node._Node_SIzE)), true);
+        _Node end = new _Node(new Vector2((int)(End.x / _Node._Node_SIzE), (int)(End.y / _Node._Node_SIzE)), true);
 
         Stack<_Node> Path = new Stack<_Node>();
         List<_Node> OpenList = new List<_Node>();
@@ -78,7 +78,7 @@ public class Astar {
                 if (!ClosedList.Contains(n) && n.Walkable) {
                     if (!OpenList.Contains(n)) {
                         n.Parent = current;
-                        n.DistanceToTarget = Math.Abs(n.Position.X - end.Position.X) + Math.Abs(n.Position.Y - end.Position.Y);
+                        n.DistanceToTarget = Math.Abs(n.Position.x - end.Position.x) + Math.Abs(n.Position.y - end.Position.y);
                         n.Cost = 1 + n.Parent.Cost;
                         OpenList.Add(n);
                         OpenList = OpenList.OrderBy(_Node => _Node.F).ToList<_Node>();
@@ -104,8 +104,8 @@ public class Astar {
     private List<_Node> GetAdjacent_Nodes(_Node n) {
         List<_Node> temp = new List<_Node>();
 
-        int row = (int)n.Position.Y;
-        int col = (int)n.Position.X;
+        int row = (int)n.Position.y;
+        int col = (int)n.Position.x;
 
         if (row + 1 < GridRows) {
             temp.Add(Grid[col][row + 1]);
@@ -123,4 +123,4 @@ public class Astar {
         return temp;
     }
 }
-}
+

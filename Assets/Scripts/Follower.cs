@@ -216,6 +216,12 @@ public class Follower : MonoBehaviour {
         }
 
     }
+
+    public void addWaterLevel() {
+
+        SceneManager.LoadScene(2);
+
+    }
         /// <summary>
         /// put all nodes active by default
         /// </summary>
